@@ -5,8 +5,15 @@
     "creators": [],
     "verifier": "Solo_Creator",
     "verification": "https://www.youtube.com/watch?v=ISTl28wKSXc",
-    "percentToQualify": "100",
+    "percentToQualify": "43",
     "password": "Free To Copy",
     "records": [
+                {
+            "user": "Ace",
+            "link": "https://www.youtube.com/watch?v=AbEr26BoKXk",
+            "percent": 100,
+            "hz": 165
+        }
+
     ]
 }

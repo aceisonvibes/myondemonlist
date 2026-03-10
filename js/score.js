@@ -1,24 +1,57 @@
-export function score(rank, percent = 100, minPercent = 1) {
-    if (rank > 150) return 0;
-    if (rank > 75 && percent < 100) return 0;
+/**
+ * Numbers of decimal digits to round to
+ */
+const scale = 3;
 
-    percent = Number(percent) || 0;
-    minPercent = Number(minPercent) || 1;
+/**
+ * Calculate the score awarded when having a certain percentage on a list level
+ * @param {Number} rank Position on the list
+ * @param {Number} percent Percentage of completion
+ * @param {Number} minPercent Minimum percentage required
+ * @returns {Number}
+ */
+export function score(rank, percent, minPercent) {
+    // Hardcode Top 1 points
+    if (rank === 1) return 500;
 
-    if (rank === 1) return 500000;
-
-    const exponent = 0.4;
-    const top1 = 500000;
-    const bottom = 1;
-
-    const k = (top1 - bottom) / Math.pow(149, exponent);
-    let scoreValue = -k * Math.pow(rank - 1, exponent) + top1;
-
-    scoreValue *= Math.max((percent - (minPercent - 1)) / (100 - (minPercent - 1)), 0);
-
-    if (percent !== 100) {
-        scoreValue = Math.max(scoreValue - scoreValue / 3, 1);
+    if (rank > 150) {
+        return 0;
+    }
+    if (rank > 75 && percent < 100) {
+        return 0;
     }
 
-    return Math.round(Math.max(scoreValue, 1));
+    // Old formula
+    /*
+    let score = (100 / Math.sqrt((rank - 1) / 50 + 0.444444) - 50) *
+        ((percent - (minPercent - 1)) / (100 - (minPercent - 1)));
+    */
+    // New formula
+    let scoreValue = (-24.9975 * Math.pow(rank - 1, 0.4) + 200) *
+        ((percent - (minPercent - 1)) / (100 - (minPercent - 1)));
+
+    scoreValue = Math.max(0, scoreValue);
+
+    if (percent != 100) {
+        return round(scoreValue - scoreValue / 3);
+    }
+
+    return Math.max(round(scoreValue), 0);
+}
+
+export function round(num) {
+    if (!('' + num).includes('e')) {
+        return +(Math.round(num + 'e+' + scale) + 'e-' + scale);
+    } else {
+        var arr = ('' + num).split('e');
+        var sig = '';
+        if (+arr[1] + scale > 0) {
+            sig = '+';
+        }
+        return +(
+            Math.round(+arr[0] + 'e' + sig + (+arr[1] + scale)) +
+            'e-' +
+            scale
+        );
+    }
 }

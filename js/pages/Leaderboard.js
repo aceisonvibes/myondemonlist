@@ -26,16 +26,17 @@ export default {
                     <table class="board">
                         <tr v-for="(ientry, i) in leaderboard">
                             <td class="rank">
-                                <p class="type-label-lg" :class="rankClass(ientry.total)">
-                                    #{{ i + 1 }}
-                                </p>
+                                <p class="type-label-lg rank" :class="rankClass(ientry.total)">#{{ i + 1 }}</p>
                             </td>
                             <td class="total">
                                 <p class="type-label-lg">{{ localize(ientry.total) }}</p>
                             </td>
                             <td class="user" :class="{ 'active': selected === i }">
                                 <button @click="selected = i">
-                                    <span class="player-name" :class="rankClass(ientry.total)">
+                                    <span
+                                        class="type-label-lg player-name"
+                                        :class="rankClass(ientry.total)"
+                                    >
                                         {{ ientry.user }}
                                     </span>
                                 </button>
@@ -50,60 +51,40 @@ export default {
                                 #{{ selected + 1 }} {{ entry.user }}
                             </span>
                         </h1>
-                        <h3>{{ localize(entry.total) }}</h3>
-                        <h2 v-if="entry.verified.length > 0">
-                            Verified ({{ entry.verified.length }})
-                        </h2>
+                        <h3>{{ entry.total }}</h3>
+
+                        <h2 v-if="entry.verified.length > 0">Verified ({{ entry.verified.length }})</h2>
                         <table class="table">
                             <tr v-for="score in entry.verified">
-                                <td class="rank">
-                                    <p :class="rankClass(score.rank)">#{{ score.rank }}</p>
-                                </td>
+                                <td class="rank"><p>#{{ score.rank }}</p></td>
                                 <td class="level">
                                     <a class="type-label-lg" target="_blank" :href="score.link">{{ score.level }}</a>
                                 </td>
-                                <td class="score">
-                                    <p>+{{ localize(score.score) }}</p>
-                                </td>
+                                <td class="score"><p>+{{ localize(score.score) }}</p></td>
                             </tr>
                         </table>
-                        <h2 v-if="entry.completed.length > 0">
-                            Completed ({{ entry.completed.length }})
-                        </h2>
+
+                        <h2 v-if="entry.completed.length > 0">Completed ({{ entry.completed.length }})</h2>
                         <table class="table">
                             <tr v-for="score in entry.completed">
-                                <td class="rank">
-                                    <p :class="rankClass(score.rank)">#{{ score.rank }}</p>
-                                </td>
+                                <td class="rank"><p>#{{ score.rank }}</p></td>
                                 <td class="level">
                                     <a class="type-label-lg" target="_blank" :href="score.link">{{ score.level }}</a>
                                 </td>
-                                <td class="score">
-                                    <p>+{{ localize(score.score) }}</p>
-                                </td>
+                                <td class="score"><p>+{{ localize(score.score) }}</p></td>
                             </tr>
                         </table>
-                        <h2 v-if="entry.progressed.length > 0">
-                            Progressed ({{ entry.progressed.length }})
-                        </h2>
+
+                        <h2 v-if="entry.progressed.length > 0">Progressed ({{ entry.progressed.length }})</h2>
                         <table class="table">
                             <tr v-for="score in entry.progressed">
-                                <td class="rank">
-                                    <p :class="rankClass(score.rank)">#{{ score.rank }}</p>
-                                </td>
+                                <td class="rank"><p>#{{ score.rank }}</p></td>
                                 <td class="level">
-                                    <a class="type-label-lg" target="_blank" :href="score.link">
-                                        {{ score.percent }}% {{ score.level }}
-                                    </a>
+                                    <a class="type-label-lg" target="_blank" :href="score.link">{{ score.percent }}% {{ score.level }}</a>
                                 </td>
-                                <td class="score">
-                                    <p>+{{ localize(score.score) }}</p>
-                                </td>
+                                <td class="score"><p>+{{ localize(score.score) }}</p></td>
                             </tr>
                         </table>
-                    </div>
-                    <div v-else class="player" style="justify-content: center; align-items: center;">
-                        <p>(ノಠ益ಠ)ノ彡┻━┻</p>
                     </div>
                 </div>
             </div>
@@ -123,18 +104,18 @@ export default {
     methods: {
         localize,
         rankClass(score) {
-            if (score >= 11000) return 'rank-11000';
-            if (score >= 7000) return 'rank-7000';
-            if (score >= 6500) return 'rank-6500';
-            if (score >= 5750) return 'rank-5750';
-            if (score >= 5000) return 'rank-5000';
-            if (score >= 4250) return 'rank-4250';
-            if (score >= 3500) return 'rank-3500';
-            if (score >= 2750) return 'rank-2750';
-            if (score >= 2000) return 'rank-2000';
-            if (score >= 1250) return 'rank-1250';
-            if (score >= 500) return 'rank-500';
-            return 'rank-0';
+            if (score >= 11000) return "rank-11000";
+            if (score >= 7000) return "rank-7000";
+            if (score >= 6500) return "rank-6500";
+            if (score >= 5750) return "rank-5750";
+            if (score >= 5000) return "rank-5000";
+            if (score >= 4250) return "rank-4250";
+            if (score >= 3500) return "rank-3500";
+            if (score >= 2750) return "rank-2750";
+            if (score >= 2000) return "rank-2000";
+            if (score >= 1250) return "rank-1250";
+            if (score >= 500) return "rank-500";
+            return "rank-0";
         },
     },
 };

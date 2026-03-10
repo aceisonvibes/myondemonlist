@@ -21,7 +21,7 @@ overflow-x: visible;
 overflow: visible;
 }
 
-/* ===== OCULTAR SCROLLBARS ===== */
+/* ===== HIDE SCROLLBARS ===== */
 
 .page-leaderboard > div::-webkit-scrollbar {
 width: 0px;
@@ -32,6 +32,8 @@ height: 0px;
 scrollbar-width: none;
 -ms-overflow-style: none;
 }
+
+/* ===== ERROR ===== */
 
 .page-leaderboard .error-container {
 grid-row: 1;
@@ -53,6 +55,8 @@ color: var(--color-on-error);
 border-radius: 0.3rem;
 font-size: 0.9rem;
 }
+
+/* ===== BOARD ===== */
 
 .page-leaderboard .board-container,
 .page-leaderboard .player-container {
@@ -103,6 +107,8 @@ cursor: pointer;
 background-color: var(--color-primary);
 color: var(--color-on-primary);
 }
+
+/* ===== PLAYER PANEL ===== */
 
 .page-leaderboard .player {
 display: flex;
@@ -159,14 +165,14 @@ margin: 0 0.6rem;
 
 .player-tag {
 font-family: "Lexend Deca", sans-serif;
-background-color: rgba(255, 0, 0, 1);
+background-color: rgba(255,0,0,1);
 color: #ffffff;
 font-weight: bolder;
 font-size: 1.2rem;
 padding: 0.2rem 0.8rem;
 border-radius: 2rem;
 display: inline-block;
-box-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
+box-shadow: 0 0 10px rgba(255,0,0,0.6);
 }
 
 /* ===== RANK COLORS ===== */
@@ -186,34 +192,29 @@ color: #ffffff;
 
 /* bronze (#3) */
 .rank-6500 {
-background: linear-gradient(
-45deg,
-#cd7f32,
-#b87333,
-#cd7f32
-);
--webkit-background-clip: text;
+display: inline-block;
+background: linear-gradient(45deg,#cd7f32,#b87333,#cd7f32);
 background-clip: text;
+-webkit-background-clip: text;
 -webkit-text-fill-color: transparent;
+color: transparent !important;
 font-weight: 700;
 }
 
 /* silver (#2) */
 .rank-7000 {
-background: linear-gradient(
-45deg,
-#c0c0c0,
-#eeeeee,
-#c0c0c0
-);
--webkit-background-clip: text;
+display: inline-block;
+background: linear-gradient(45deg,#c0c0c0,#eeeeee,#c0c0c0);
 background-clip: text;
+-webkit-background-clip: text;
 -webkit-text-fill-color: transparent;
+color: transparent !important;
 font-weight: 700;
 }
 
 /* rainbow (#1) */
 .rank-11000 {
+display: inline-block;
 background: linear-gradient(
 90deg,
 red,
@@ -225,9 +226,10 @@ blue,
 violet
 );
 background-size: 400% 400%;
--webkit-background-clip: text;
 background-clip: text;
+-webkit-background-clip: text;
 -webkit-text-fill-color: transparent;
+color: transparent !important;
 font-weight: 800;
 animation: rainbowMove 3s linear infinite;
 }

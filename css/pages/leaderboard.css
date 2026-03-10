@@ -1,6 +1,220 @@
-/* ===== RANK COLORS ===== */
+.page-leaderboard-container {
+    display: block;
+}
 
-/* Everyone except top ranks → blue gradient */
+.page-leaderboard {
+    height: 100%;
+    display: grid;
+    grid-template-columns: minmax(24rem, 2fr) 3fr;
+    grid-template-rows: max-content 1fr;
+    column-gap: 2rem;
+    max-width: 80rem;
+    margin: 0 auto;
+}
+
+.page-leaderboard > div {
+    overflow-y: auto;
+    overflow-x: visible;
+}
+
+.page-leaderboard {
+    overflow: visible;
+}
+
+/* ===== OCULTAR SCROLLBARS (SIN DESACTIVAR SCROLL) ===== */
+
+/* Chrome, Edge, Safari */
+.page-leaderboard > div::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+}
+
+/* Firefox */
+.page-leaderboard > div {
+    scrollbar-width: none;
+}
+
+/* IE / Edge legacy */
+.page-leaderboard > div {
+    -ms-overflow-style: none;
+}
+
+.page-leaderboard .error-container {
+    grid-row: 1;
+    grid-column: 2;
+    min-height: 0; /* Permitir colapsar */
+    height: auto;
+    overflow: hidden;
+}
+
+/* Solo ocupa espacio cuando tiene contenido */
+.page-leaderboard .error-container:empty {
+    display: none;
+}
+
+.page-leaderboard .error-container .error {
+    padding: 0.5rem 1rem; /* Reducido de 1rem */
+    margin: 0.3rem 0; /* Margen pequeño en lugar de padding grande */
+    background-color: var(--color-error);
+    color: var(--color-on-error);
+    border-radius: 0.3rem;
+    font-size: 0.9rem;
+}
+
+.page-leaderboard .board-container,
+.page-leaderboard .player-container {
+    grid-row: 2;
+    /* padding-block: 2rem; */
+}
+
+.page-leaderboard .board-container {
+    padding-inline: 1rem;
+}
+
+.page-leaderboard .board {
+    table-layout: auto;
+    display: block;
+    width: 100%;
+}
+
+.page-leaderboard .board .rank {
+    padding-block: 1rem;
+    text-align: end;
+}
+
+.page-leaderboard .board .total {
+    padding: 1rem;
+    text-align: end;
+}
+
+.page-leaderboard .board .user {
+    width: 100%;
+}
+
+.page-leaderboard .board .user button {
+    background-color: var(--color-background);
+    color: var(--color-on-background);
+    border: none;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    text-align: start;
+    word-break: normal;
+    overflow-wrap: anywhere;
+}
+
+.page-leaderboard .board .user button:hover {
+    background-color: var(--color-background-hover);
+    color: var(--color-on-background-hover);
+    cursor: pointer;
+}
+
+.page-leaderboard .board .user.active button {
+    background-color: var(--color-primary);
+    color: var(--color-on-primary);
+}
+
+.page-leaderboard .player {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding-right: 2rem;
+}
+
+.page-leaderboard .player .table {
+    table-layout: fixed;
+}
+
+.page-leaderboard .player .table tr td:not(:last-child) {
+    padding-right: 2rem;
+}
+
+.page-leaderboard .player .table p,
+.page-leaderboard .player .table a {
+    padding-block: 1rem;
+}
+
+.page-leaderboard .player .table .rank p,
+.page-leaderboard .player .table .score p {
+    text-align: end;
+}
+
+.page-leaderboard .player .table .level {
+    width: 100%;
+}
+
+.page-leaderboard .player .table a:hover {
+    text-decoration: underline;
+}
+
+/* ===== NOMBRES ===== */
+
+.player-name {
+    color: inherit !important;
+    transition: transform 0.2s ease;
+}
+
+
+.player-name:hover {
+    transform: scale(1.03);
+}
+
+.player-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin: 0 0.6rem;
+}
+
+.player-tag {
+    font-family: "Lexend Deca", sans-serif;
+    background-color: rgba(255, 0, 0, 1);
+    color: #ffffff;
+    font-weight: bolder;
+    font-size: 1.2rem;
+    padding: 0.2rem 0.8rem;
+    border-radius: 2rem;
+    display: inline-block;
+    margin-top: 0.1rem;
+    margin-bottom: 0.1rem;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
+    width: fit-content;
+    max-width: 100%;
+    word-wrap: break-word;
+}
+
+.tag-LCDSS {
+    background: linear-gradient(180deg, #ff3b3b, #c80000);
+    box-shadow: 0 0 8px rgba(255, 0, 0, 0.6);
+}
+
+.tag-Ex-ECDL {
+    background: linear-gradient(180deg, #ff3b3b, #c80000);
+    box-shadow: 0 0 8px rgba(255, 0, 0, 0.6);
+}
+
+.tag-EHDSS {
+    background: linear-gradient(180deg, #ff3b3b, #c80000);
+    box-shadow: 0 0 8px rgba(255, 0, 0, 0.6);
+}
+
+.tag-hardest {
+    background: linear-gradient(180deg, #ff3b3b, #c80000);
+    box-shadow: 0 0 8px rgba(255, 0, 0, 0.6);
+}
+
+.tag-owner {
+    background: linear-gradient(180deg, #000000, #000000);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+}
+
+.tag-EMS {
+    background: linear-gradient(180deg, #4e24a7, #6c14cf);
+    box-shadow: 0 0 8px rgb(90 0 255 / 87%);
+}
+
+/* ===== RANGOS ===== */
+
+/* NORMAL PLAYERS */
 .rank-0,
 .rank-500,
 .rank-1250,
@@ -9,51 +223,55 @@
 .rank-3500,
 .rank-4250,
 .rank-5000,
-.rank-5750,
-.rank-6500 {
-
-    background: linear-gradient(90deg, #6ec6ff, #42a5f5);
-
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-
-    font-weight: 600;
+.rank-5750 {
+    color: #ffffff !important;
 }
 
-/* TOP 3 style */
-.rank-7000 {
-    background: linear-gradient(
-        -45deg,
-        #ffffff,
-        #ffd700,
-        #ffffff,
-        #ffd700
-    );
+/* TOP 3 */
 
-    background-size: 400% 400%;
+/* TOP 3 - Bronze */
+.rank-6500 {
+    background: linear-gradient(
+        45deg,
+        #cd7f32,
+        #b87333,
+        #cd7f32
+    );
 
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
 
     font-weight: 700;
-
-    text-shadow:
-        0 0 8px rgba(255,255,255,0.9),
-        0 0 18px rgba(255,215,0,0.9);
-
-    animation: gradientHero 2s linear infinite;
 }
 
-/* Top 1 special */
+/* TOP 2 - Silver */
+.rank-7000 {
+    background: linear-gradient(
+        45deg,
+        #c0c0c0,
+        #eeeeee,
+        #c0c0c0
+    );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    font-weight: 700;
+}
+
+/* TOP 1 - Rainbow */
 .rank-11000 {
     background: linear-gradient(
-        -45deg,
-        #ff0000,
-        #ffff00,
-        #ffffff,
-        #ff0000
+        90deg,
+        red,
+        orange,
+        yellow,
+        lime,
+        cyan,
+        blue,
+        violet
     );
 
     background-size: 400% 400%;
@@ -64,9 +282,143 @@
 
     font-weight: 800;
 
-    text-shadow:
-        0 0 10px rgba(255,255,255,0.9),
-        0 0 20px rgba(255,0,0,0.8);
+    animation: rainbowMove 3s linear infinite;
+}
 
-    animation: gradientHero 2s linear infinite;
+@keyframes rainbowMove {
+    0% { background-position: 0% }
+    100% { background-position: 100% }
+}
+background: linear-gradient(
+        -1000deg,
+        #e6ff00,
+        #ff0000,
+        #ffffff,
+        #ffffff
+    );
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: #ffffff00;
+
+    text-shadow:
+        0 0 8px rgb(116 209 163 / 90%),
+        0 0 18px rgb(255 214 1 / 90%);
+
+    font-weight: 700;
+    animation: gradientHero 2s linear infinite, glowPulse 2s ease-in-out infinite;
+}
+
+/* ===== ANIMACIONES ===== */
+
+@keyframes gradientHero {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* ===== BUSCADOR SIMPLE ===== */
+
+.search-box {
+    grid-row: 1;
+    grid-column: 1;
+    padding: 0.5rem 1rem;
+    align-self: start; /* No estirar verticalmente */
+}
+
+.search-box input {
+    width: 100%;
+    padding: 0.6rem 0.8rem;
+    background-color: hsl(0deg 0.35% 45.04% / 21%);
+    border: 1px solid #ffffffa3;
+    border-radius: 0.4rem;
+    color: var(--color-on-surface, #ffffff);
+    font-family: "Lexend Deca", sans-serif;
+    font-size: 0.85rem;
+    outline: none;
+}
+
+.search-box input:focus {
+    border-color: var(--color-primary-hover, #27262c96);
+    box-shadow: 0 0 10px rgb(43 47 44 / 30%);
+}
+
+.search-box input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.no-results {
+    padding: 2rem;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.5);
+    font-style: italic;
+}
+
+.page-leaderboard {
+    grid-template-rows: auto 1fr;
+}
+
+.page-leaderboard .board-container {
+    grid-row: 2;
+    padding-top: 0.5rem;
+}
+
+.page-leaderboard .player-container {
+    grid-row: 2;
+    padding-top: 0.5rem;
+}
+
+/* Tags por niveles específicos */
+.tag-pack-pro {
+    background: linear-gradient(180deg, #FF5722, #D84315);
+    box-shadow: 0 0 10px rgba(255, 87, 34, 0.5);
+}
+
+.tag-pack-legendario {
+    background: linear-gradient(180deg, #FFD700, #FFA000, #FF8F00);
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+    animation: shine 2s infinite;
+}
+
+.tag-pack-ecuador-extremo {
+    background: linear-gradient(180deg, #E91E63, #AD1457);
+    box-shadow: 0 0 10px rgba(233, 30, 99, 0.5);
+}
+
+.tag-pro {
+    background: linear-gradient(180deg, #FF5722, #BF360C);
+    box-shadow: 0 0 10px rgba(255, 87, 34, 0.6);
+}
+
+.tag-pack-femboy {
+    background: linear-gradient(180deg, #9C27B0, #4A148C);
+    box-shadow: 0 0 10px rgba(156, 39, 176, 0.6);
+}
+
+.tag-pack-tuti {
+    background: linear-gradient(180deg, #FFD700, #FFA000);
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    color: #000 !important;
+}
+
+.tag-pack-ecuador {
+    background: linear-gradient(180deg, #FFD700, #1770f5, #e61700);
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+    color: #000 !important;
+    animation: pulse 2s infinite;
+}
+
+.tag-pack-trilogy {
+    background: linear-gradient(180deg, #BF360C, #870000);
+    box-shadow: 0 0 10px rgba(191, 54, 12, 0.5);
+}
+
+@keyframes shine {
+    0%, 100% { filter: brightness(1); }
+    50% { filter: brightness(1.3); }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
 }

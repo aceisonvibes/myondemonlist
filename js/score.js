@@ -11,6 +11,9 @@ const scale = 3;
  * @returns {Number}
  */
 export function score(rank, percent, minPercent) {
+    // Hardcode Top 1 points
+    if (rank === 1) return 500;
+
     if (rank > 150) {
         return 0;
     }
@@ -24,16 +27,16 @@ export function score(rank, percent, minPercent) {
         ((percent - (minPercent - 1)) / (100 - (minPercent - 1)));
     */
     // New formula
-    let score = (-24.9975*Math.pow(rank-1, 0.4) + 200) *
+    let scoreValue = (-24.9975 * Math.pow(rank - 1, 0.4) + 200) *
         ((percent - (minPercent - 1)) / (100 - (minPercent - 1)));
 
-    score = Math.max(0, score);
+    scoreValue = Math.max(0, scoreValue);
 
     if (percent != 100) {
-        return round(score - score / 3);
+        return round(scoreValue - scoreValue / 3);
     }
 
-    return Math.max(round(score), 0);
+    return Math.max(round(scoreValue), 0);
 }
 
 export function round(num) {
